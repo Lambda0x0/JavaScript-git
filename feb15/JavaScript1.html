@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 1</title>
+</head>
+<body>
+    <strong> <!-- visualizzo in grassetto quello che realizzo con JavaScript -->
+        <script> // qui è codice JavaScript (JS)
+            let messaggio; // dichiaro (let) una variabile di nome messaggio
+            messaggio = "Buongiorno a tutti!"; // assegno un valore alla variabile
+            document.write("Hello World! (JavaScript)"); // write() funzione pronta per scrivere nel document (che è la pagina web corrente)
+            document.write("<br />"); // mando a capo il testo usando in JS il tag di HTML
+            document.write(messaggio); // senza virgolette perché è il nome della variabile e voglio stamparne il valore
+            document.write(" "); // aggiungo uno spazio accanto al testo precedente
+            messaggio = 12345; // cambio il valore di messaggio e anche il suo tipo (numerico)
+            document.write(messaggio);
+            messaggio = messaggio + 5; // essendo ora messaggio un numero, posso manipolarlo aritmeticamente
+            document.write(" " + messaggio);
+            // il + effettua una somma se è tra due numeri, concatena se il primo termine è testo
+        </script>
+    </strong><br />
+    Hello World! (HTML)<br />
+    <code>
+        document.write("ciao");<br /> <!-- così stampo il comando con font a larghezza fissa -->
+    </code>
+    document.write("ciao");<br /> <!-- così stampo il comando JS -->
+    <script>
+        document.write("ciao"); // così eseguo il comando JS
+    </script>
+</body>
+</html>

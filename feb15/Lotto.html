@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrazione del lotto</title>
+</head>
+<body>
+    <p>Effettuo una estrazione del lotto, quindi un numero compreso tra 1 e 90</p>
+    <script>
+        let numero = Math.floor(Math.random()*90+1);
+        /*
+            Math.random() genera un numero decimale tra 0 incluso e 1 escluso [ 0, 1 [
+            Math.random()*90 genera un numero decimale tra 0 incluso e 90 escluso [ 0, 90 [
+            Math.random()*90+1 genera un numero decimale tra 1 incluso e 91 escluso [ 1, 91 [
+            Math.floor(Math.random()*90+1) genera un numero intero (floor() tronca la parte decimale) tra 1 e 90 inclusi [ 1, 90 ]
+        */
+       document.write("Numero estratto: " + numero);
+    </script>
+    <p>Effettuo un lancio di dado, quindi otterrò un numero tra 1 e 6</p>
+    <script>
+        numero = Math.floor(Math.random()*6+1);
+        document.write("Faccia uscita: " + numero);
+    </script>
+</body>
+</html>

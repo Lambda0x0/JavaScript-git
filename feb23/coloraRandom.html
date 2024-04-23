@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colore div casuale</title>
+    <style>
+        .interno{
+            width:50px;
+            height: 50px;
+            float: left;
+            margin: 5px;
+            padding: 0px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenitore"> <!--rappresenta il mio array di div-->
+          <script>
+            for (let i = 1; i<=90; i++){
+              document.write("<div class='interno'></div>"); //90 div nel contenitore
+            }
+          </script>
+    </div>
+    <script>
+        function zero(numero){ //funzione per correggere il numero casuale generato dal programma
+            
+            if (numero.length < 2 ){ //controllo un numero esadecimale, aaggiungo lo ' se è <10'
+                numero = "0" + numero;
+            }
+            return numero;
+        }
+
+        window.addEventListener("load" , colora);//colora() parte al caricamento della pagina
+
+        function colora(){
+            let elemento = document.getElementById("contenitore").getElementsByTagName("div"); //getElementByTagName mi permette di prendere tutti i div
+            let colore; //memoria per i colori da comporre
+            let casuale;// memoria per i valori generati da random
+            let esa; //memoria per il valore random() convertito in esadecimale
+
+            for(let i = 0; i < elemento.length; i++){ //scansiono tutti i div come in un array
+                colore ="#"; //inizio a comporre il codice del colore
+
+                for (let c = 1; c <=3; c++){ //ciclo per generare le tonalità R, G, B
+                     casuale = Math.floor(Math.random()*256); //per ogni tonalità ho 256 valori
+                     esa = zero(casuale.toString(16)); //toString16 converte da base 10 a base 16 (esadecimale);
+                     //se casuale = 10; casuale.toString (16) = "a";
+                     //zero(casuale.toStrung(16))= "0a";
+                     //se casuale = 200; casuale.toString(16) ="c8";
+                     // zero (casuale.toString(16)) = "c8";
+                     colore += esa; //concateno al colore già memorizzato, il codice del colore estratto
+                }
+
+                elemento [i].style.backgroundColor = colore;
+            }
+            setTimeout("colora()", 500); 
+        }
+    </script>
+</body>
+</html>

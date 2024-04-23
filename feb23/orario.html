@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data e ora</title>
+    <style>
+        #data{
+            font-family: Verdana; 
+        }
+
+    </style>
+</head>
+<body>
+    <div id="data"></div>
+    <script>
+        //creo una funzione che aggiunga uno zero davanti ai valori minori di 10
+        function zero(numero) {
+            if (numero < 10){
+                numero = "0" + numero; //se numero arriva come 5, diventa "05"
+            }
+
+            return numero; //return invia al rigo dove ho invocato zero() il numero evetualmente modificato
+        }
+
+        window.addEventListener("load", creaData); // al caricamento del document nella finestra del browser ("load"), viene lanciata la funzione creaData(); load: evento intrinseco
+
+        function creaData() {
+            let data = new Date(); //Date() è un oggetto di js capace di leggere data e ora dal sistema
+            let giorno = zero(data.getDate()); //let Data già ce l'ha incluso il giorno, la data e l'orario, quindi getDate() preleva il numero del giorno corrente; essendo 23 > 10, zero() lo restituirà intatto
+            let mese = zero(data.getMonth()+1); // get month preleva il numer del mese corrente; i mesi partono da 0, quindi va aggiunto 1; essendo quindi 2 < 10, zero() restituisce 02
+            let anno = data.getFullYear(); //getfullyear preleva il numero dell'anno
+            let ore = zero(data.getHours()); // get hours(preleva il numero dell'ora corrente
+            let minuti = zero(data.getMinutes()); //getMinutes preleva il numero dei minuti correnti
+            let secondi = zero(data.getSeconds()); //getSecond() preleva il numero dei secondi correnti
+            document.getElementById("data").innerText = giorno + "/" + mese + "/" + anno + " - " + ore + ":" + minuti + ":" + secondi;
+            //innerText è un alternativo a innerHTML quando non corre scrivere tag HTML
+            setTimeout("creaData()"); // imposto la funzione da ripetere (tra virgolette) e l'intervallo di tempo in millisecondi di ripetizione del metodo stesso
+
+
+        }
+    </script>
+</body>
+</html>

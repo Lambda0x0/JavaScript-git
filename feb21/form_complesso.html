@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form trasferimento dati</title>
+    <style>
+        .casella {
+            margin-left: 5px;
+            margin-top: 10px;
+            margin-right: 15px;
+            margin-bottom: 1opx;
+            font-family: tahoma;
+        }
+
+        div {
+            background-color: yellow;
+            width: 500px;
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            text-align: center;
+            font-family: tahoma;
+        }
+
+        #submit {
+            float: right;
+            margin-top: 11px;
+        }
+
+        .risultato {
+            /*formattazione dei campi output*/
+            margin-top: 50px;
+            margin-left: 15px;
+            text-align: center;
+        }
+
+        #risultato {
+            /*contenitore dell'output, un id può essere ononimo di una classe e tuttavia è indipendente*/
+           display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form" name="modulo1" method="post"> <!--non ho l'ection perchè il form lavora tramite JS-->
+        <fieldset>
+            <legend>DATI ANAGRAFICI</legend>
+            NOME:<input type="text" name="nome"  class="casella" tabindex="1" size="15" maxlength="20" /> <!--size indica la larghezza, maxlength la lunghezza massima dei caratteri da poter inserire-->
+            COGNOME:<input type="text" name="cognome"  class="casella" tabindex="2" size="15" maxlength="20" />
+            DATA DI NASCITA:<input type="date" name="data"  class="casella" tabindex="3" size="15"/>
+            TELEFONO: <input type="tel" name="tel"  class="casella" tabindex="4" size="15" maxlength="15"/>
+            EMAIL: <input type="email" name="email"  class="casella" tabindex="5" size="15" maxlength="40" />
+            <input type="button" id="submit" name="button" value="invia" /> <!--button da programmare-->
+        </fieldset>
+    </form>
+    <div id="risultato">Ricevuta da stampare <br />
+    <form name="modulo2" id="form2" method="post">
+        <input name="uno" type="text" class="risultato" readonly placeholder="Nome" />
+         <input name="due" type="text" class="risultato" readonly placeholder="Cognome" />
+         <input name="tre" type="text" class="risultato" readonly placeholder="Data di nascita" />
+         <input name="quattro" type="text" class="risultato" readonly placeholder="Telefono" />
+         <input name="cinque" type="text" class="risultato" readonly placeholder="Email" />
+    </form>
+    </div>
+    <script>
+        document.getElementById('submit').addEventListener("click", invia);
+        function invia() {
+            if (document.modulo1.nome.value == "" || document.modulo1.cognome.value == "" || document.modulo1.data == "" || document.modulo1.tel.value == "" || document.modulo1.email.value == "") 
+            alert("Compilare tutti i campi");
+        return;
+            document.modulo2.uno.value = document.modulo1.nome.value; // trasferisco l'input relativo al nome nella casella dedicata del secondo form
+            document.modulo2.due.value = document.modulo1.cognome.value; // trasferisco l'input relativo al cognome nella casella dedicata del secondo form
+            document.modulo2.tre.value = document.modulo1.data.value; 
+            document.modulo2.quattro.value = document.modulo1.tel.value; 
+            document.modulo2.cinque.value = document.modulo1.email.value; 
+            document.getElementById("form").style.display = "none"; //nascondo il form di input
+            document.getElementById("risultato").style.display = "block"; //mostro il form di output
+
+        }
+
+        
+    </script>
+</body>
+
+</html>

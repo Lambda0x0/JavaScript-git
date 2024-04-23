@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrazione lotteria</title>
+</head>
+<body>
+    <p>Estrazione di un nominativo tra i partecipanti a una lotteria</p>
+    <script>
+        let partecipanti = ["Andrei", "Michele", "Maria Chiara", "Elisabetta", "Froy", "Carlo"];
+        // l'array si crea come una normale variabile ma si usano le parentesi quadre per contenere gli elementi al suo interno
+        let casuale = Math.floor(Math.random()*partecipanti.length);
+        // con random() estraggo la posizione del vincitore nell'array, le posizioni/indici partono da 0, quindi a differenza di quanto fatto in Lotto.html non devo aggiungere 1
+        document.write("Vince la lotteria " + partecipanti[casuale] + " che è la " + (casuale + 1) + "° persona nell'array<br />");
+        partecipanti.push("Patrizia"); // Patrizia si aggiunge all'array dopo Carlo
+        partecipanti.push("Ruben"); // Ruben si aggiunge all'array dopo Patrizia
+        partecipanti.push("Simone"); // Simone si aggiunge all'array dopo Ruben
+        casuale = Math.floor(Math.random()*partecipanti.length); // length si è aggiornato, quindi include ora anche gli ultimi inseriti
+        document.write("Vince la lotteria " + partecipanti[casuale] + " che è la " + (casuale + 1) + "° persona nell'array<br />");
+        document.write("Hanno partecipato alla lotteria:<br />");
+        document.write("<ol>");
+        
+        for (let i = 0; i < partecipanti.length; i++) {
+            document.write("<li>" + partecipanti[i] + "</li>");
+        }
+
+        document.write("</ol>");
+    </script>
+</body>
+</html>

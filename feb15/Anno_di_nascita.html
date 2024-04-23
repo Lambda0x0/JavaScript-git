@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anno di nascita</title>
+</head>
+<body>
+    <p>Realizzo due select HTML usando JS</p>
+    <select>
+        <option selected disabled>Scegli l'anno di nascita</option> <!-- call to action -->
+        <script> // versione col while
+            let contatore = 1924; // il contatore parte da 100 anni fa
+
+            while (contatore <= 2024) { // finché il contatore non è arrivato all'anno corrente...
+                document.write("<option>" + contatore + "</option>"); // stampo l'option di un anno
+                contatore++; // incremento il contatore, si salva in automatico nella variabile
+            }
+            document.write(" ");
+        </script>
+    </select>
+    <select>
+        <option selected disabled>Scegli l'anno di nascita</option> <!-- call to action -->
+        <script> // versione col for
+            const inizio = prompt("Da che anno vuoi iniziare?");
+
+            for (let indice = Number(inizio); indice <= 2024; indice++) { // (contatore; regola; modifica contatore)
+                document.write("<option>" + indice + "</option>");
+            }
+        </script>
+    </select>
+</body>
+</html>

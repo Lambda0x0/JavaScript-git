@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primo tasto</title>
+    <script>
+        document.addEventListener("keydown", logkey); // quando premo un tasto, parte logkey()
+
+        function logkey(e) {
+            alert("il keyCode del tasto premuto è " + e.keyCode);
+
+        }
+    </script>
+</head>
+<body>
+    Premi un tasto e ti dirò il suo keyCode per poterlo programmare!
+</body>
+</html>

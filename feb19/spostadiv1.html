@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sposta div</title>
+    <style>
+        #blocco {
+            background-color: #f98800;
+            width: 200px;
+            height: 20px;
+            color: #ffff00;
+            text-align: center; 
+            border: double;
+            border-color: #6100ff;
+            position: relative;
+            top: 0px;
+            left: 0px;
+
+        }
+    </style>
+    <script>
+        //recupero le dimensioni della finestra del brower
+        const x = screen.availWidth; //larghezza della finstra
+        const y = screen.availHeight; // altezza finestra (inclusa barra di navigazione..)
+
+        document.addEventListener("keydown", logkey); // a differenza di premitasto, qui non leggo il keycode ma programmo i tasti di mio interesse
+
+        function logkey(e){
+            let tasto = e.keyCode; // recupero il keycode del tasto premuto
+            let sinistra = document.getElementById("blocco").style.left; // acquisisco il left di blocco
+            let sopra =document.getElementById("blocco").style.top; //acquisisco il top di blocco
+
+            if(tasto == 39) {//verifico se è stata premuta la freccia a destra
+               sinistra = Number(sinistra.substring(0, sinistra.length-2)) +25;
+               // length-2 toglie "px" dalla stringa che va convertita in Number per aggiungervi 25
+               // dopo aver verificato che lo spostamento è possibile riconcateno "px" per aggiornale left
+               // ATTENZIONE: le frecce non funzionano sull'evento keypress
+               /*
+               sinistra.length vale 3 ("0px")
+               sinistra.length-2 vale 1("0")
+               sinistra.substring(0, sinistra.length-2) mi recupera "0" come testo
+               Number converte "0" in 0 per poter 25
+               */
+
+               if (sinistra <=x - 200) { //200 è width di blocco
+                   document.getElementById("blocco").style.left = sinistra + "px";
+               }
+            }   else if (tasto == 37 ) { // verifico se è stata premuta la freccia a sinistra
+                sinistra = Number(sinistra.substring(0, sinistra.length-2)) -25;
+
+                if (sinistra >= 0) {
+                   document.getElementById("blocco").style.left = sinistra + "px";
+                }
+            } else if (tasto == 40) { //verifico se è stata premuta la freccia in giù
+                sopra= Number(sopra.substring(0, sopra.length-2)) +25;
+
+                if (sopra < y - 140) { //110 tiene conto dell'height di blocco e della cornice della finestra del browser
+                    document.getElementById("blocco").style.top = sopra + "px";
+                }
+            } else if (tasto == 38) { // verifico se è stata premuta la freccia in su
+            sopra = Number(sopra.substring(0, sopra.length-2)) -25;
+                
+            if (sinistra >= 0) {
+                   document.getElementById("blocco").style.top = sopra + "px";
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="blocco">Chiara</div>
+    
+</body>
+</html>

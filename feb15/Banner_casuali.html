@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dvd {
+            width: 400px;
+            height: auto;
+        }
+
+        .gallery {
+            float: left;
+            width: 200px;
+            height: 280px;
+            border: 1px dotted blueviolet;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .locandina {
+            width: 85%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <p>Visualizzazione di un banner casuale nella pagina</p>
+    <script>
+        let banner = ["back_to_school.jpg", "climbing_sport.jpg", "jaguar.jpg"]; // creo l'array
+        let casuale = Math.floor(Math.random()*banner.length); // effettuo l'estrazione
+        document.write("<img src='banner/" + banner[casuale] + "' />");
+        // per l'argomento di src devo usare gli apici perché le virgolette sono già occupate
+    </script>
+    <p>Visualizzazione copertina di un film</p>
+    <script>
+        let dvd = [
+            "https://i.pinimg.com/originals/c5/d2/ef/c5d2efbf6ac0ad3fc1a7bc43b912a901.jpg",
+            "https://pad.mymovies.it/filmclub/2021/11/242/locandina.jpg",
+            "https://m.media-amazon.com/images/I/81wg8xW3-YL._AC_UF1000,1000_QL80_.jpg",
+            "https://pad.mymovies.it/filmclub/2006/06/251/locandina.jpg"
+        ];
+        casuale = Math.floor(Math.random()*dvd.length);
+        document.write("<img id='dvd' src='" + dvd[casuale] + "' />");
+    </script>
+    <p>Visualizzazione gallery copertine dei film</p>
+    <script>
+        for (let i = 0; i < dvd.length; i++) {
+            document.write("<div class='gallery'><img class='locandina' src='" + dvd[i] + "' /></div>");
+        }
+    </script>
+</body>
+</html>

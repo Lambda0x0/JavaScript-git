@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tavola pitagorica</title>
+    <style>
+        table {
+            background-color: #24b014;
+            border: 2px solid yellow;
+        }
+
+        td {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            font-size: 16px;
+            width: 58px;
+            height: 38px;
+            border-bottom: 1px solid white;
+            border-right: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <script>
+            const righe = Number(prompt("Quante righe desideri?"));
+            const colonne = Number(prompt("Quante colonne, invece?"));
+            // per costruire la tabella, ho bisogno di un ciclo per creare le righe, contenente un altro ciclo per creare le celle che compongono le colonne
+
+            for (let riga = 1; riga <= righe; riga++) { // ciclo delle righe
+                document.write("<tr>");
+
+                for (let colonna = 1; colonna <= colonne; colonna++) { // ciclo delle celle
+                    document.write("<td>" + riga*colonna + "</td>");
+                }
+
+                document.write("</tr>");
+            }
+        </script>
+    </table>
+</body>
+</html>

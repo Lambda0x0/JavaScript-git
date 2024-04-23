@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime funzioni</title>
+    <style>
+        body {
+            background-color: #1bfc90;
+
+        }
+
+
+        #primo {
+            background-color: #ebf900;
+            height: 200px;
+            width: 200px;
+            color: #ff070b;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        #secondo {
+            background-color: #8016c7;
+            height: 200px;
+            width: 200px;
+            color: #000000;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+
+
+        #terzo {
+            background-color: #1d3f18;
+            height: 200px;
+            width: 200px;
+            color: #dddddd;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+<div id="primo">
+    Clicca in questo riquadro per eseguire  la funzione messagiio(). <br />
+    Passaci sopra  col mouse per cambiare lo sfondo <br />
+    allontanati col mouse per ripristrinare lo sfondo originale <br />
+
+</div>
+
+<div id="secondo">
+    Passa su questo riquadro col mouse per eseguire la funzione messaggi <!-- stessa funzione di rigo 50 ma con evento di rigo 51-->
+
+</div>
+<div id="terzo" data-coloreover="#0000ff"data-coloreout="#1d3f18">
+Clicca due volte in questo riquadro per eseguire la funzione messaggio <br />
+Passaci sopra col mouse per cambiare lo sfondo e allontanati per ripristinarlo  <!--funzione diversa da quella di "primo"-->
+</div>
+<script>
+    // creo tre costanti che fanno riferimento in js ai tre div
+    const primo= document.getElementById("primo")// const primo vale il div primo
+    const secondo= document.getElementById("secondo")// const secondo vale il div secondo
+    const terzo= document.getElementById("terzo")// const terzo vale il div terzo
+
+    function messaggio(){
+        alert("Benvenuto/a , grazie per la visita! :)");
+    }
+    function sfondo(){
+        primo.style.backgroundColor = "#0000ff";
+        // style: comando per collegare js a css
+        // backgroundColor: corrisponde all'attrivuto background-color di css
+        // N:B senza l'uguale avviene la lettura del background-color che posso salvare in js
+
+    }
+function ripristinaSfondo(){
+    primo.style.backgroundColor = "#ebf900";
+}
+
+function sfondoDinamico(event) { // siccome la funzuione è lanciata in due eventi, occore sapere quale evento si è verificato 
+    let elem= event.currentTarget; //recupero l'elemento che ha lanciato la funzione
+
+if (event.type == "mouseover") { //analizzo se l'evento era il passagio del mouyse sul div
+elem.style.backgroundColor = elem.dataset.coloreover;
+
+} 
+else if (event.type == "mouseout") {
+    elem.style.backgroundColor = elem.dataset.coloreout;
+
+}
+}
+
+    // scrivo le associazioni evento-oggetto-funzioni (come mettere dei sensori nella pagina)
+    primo.addEventListener("click", messaggio );
+    primo.addEventListener("mouseover", sfondo);
+    primo.addEventListener("mouseout", ripristinaSfondo);
+    secondo.addEventListener("mouseover", messaggio);
+    terzo.addEventListener("dblclick", messaggio);
+    terzo.addEventListener("mouseover", sfondoDinamico);
+    terzo.addEventListener("mouseout", sfondoDinamico);
+
+
+ </script>
+</body>
+
+</html>

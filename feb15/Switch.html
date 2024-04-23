@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro scolastico</title>
+    <style>
+        #verde {
+            color: green;
+        }
+
+        #rosso {
+            color: red;
+        }
+
+        #nero {
+            color:black;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <p>Programma che converte il voto di uno/a studente/studentessa in giudizio</p>
+    <script>
+        const nome = prompt("Come si chiama lo studente?");
+        const voto = Number(prompt("Qual è il voto conseguito da " + nome + "?"));
+        let giudizio;
+
+        switch(voto) { // nelle parentesi tonde va messo il valore da controllare
+            // da 1 a 5 il giudizio è insufficiente
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5: // equivale if (voto >= 1 && voto <= 5)
+                giudizio = "Insufficiente";
+                break; // interrompo lo switch se ho trovato qui il valore di voto
+            case 6:
+                giudizio = "Sufficiente";
+                break;
+            case 7:
+                giudizio = "Discreto";
+                break;
+            case 8:
+                giudizio = "Buono";
+                break;
+            case 9:
+                giudizio = "Ottimo";
+                break;
+            case 10:
+                giudizio = "Eccellente";
+                break;
+            default: // intercetta tutti i valori di voto non gestiti dai case
+                giudizio = "Non classificato - Assente";
+        }
+
+        if (voto >= 6 && voto <= 10) {
+            document.write("<div id='verde'>");
+        } else if (voto >= 1 && voto <= 5) {
+            document.write("<div id='rosso'>");
+        } else {
+            document.write("<div id='nero'>");
+        }
+        document.write("Il giudizio conseguito da " + nome + " è " + giudizio);
+        document.write("</div>");
+    </script>
+</body>
+</html>

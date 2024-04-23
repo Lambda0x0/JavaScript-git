@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+
+<body>
+    <h2>Input text con "regole" (preventDefault())</h2>
+    <p>Inserisci il tuo nome usando soltanto lettere minuscole.</p>
+    <input type="text" id="myName" />
+    <script>
+        let mioNome = document.getElementById("myName");
+        // il controllo lo effettuo carattere per carattere
+        mioNome.addEventListener("keypress", checkName, false); // keypress perché devo recuperare il carattere e non il tasto
+
+        function checkName(event) {
+            let charCode = event.charCode; // recupero il codice del carattere, non del tasto
+
+            if (charCode < 97 || charCode > 122) {
+                event.preventDefault(); // blocco l'evento quindi non scrivo nell'input text
+                alert("Per favore, usa solo lettere minuscole");
+            }
+
+        }
+    </script>
+    <h2>Link disattivato (preventDefault() e removeEventListener())</h2> <!-- removeEventListener() è il contrario di addEventListener() -->
+    <p>
+        <input type="checkbox" name="privacy" value="ok" id="privacy" checked /> Acconsento al trattamento dei dati personali<br />
+        <a id="link" href="https://www.google.it" target="_blank">Vai su Google</a> (questo link non funziona se non accetti il trattamento dei dati personali!)
+    </p>
+    <script>
+        const casella = document.getElementById("privacy");
+        casella.addEventListener("click", controlla);
+
+        function controlla() {
+
+            if (casella.checked) { // se la checkbox è attiva
+                document.getElementById("link").removeEventListener("click", disabilita); // link a Google consentito: disattivo il blocco sul link
+            } else { // se la checkbox è disattivata
+                document.getElementById("link").addEventListener("click", disabilita); // link a Google negato: attivo il blocco sul link
+            }
+
+        }
+
+        function disabilita(event) {
+            event.preventDefault();
+        }
+    </script>
+    <h2 class="esempio1">Modifica del primo elemento di una classe o su un elemento di un dato tag (querySelector())</h2>
+    <p class="esempio1">Questo paragrafo ha class="esempio1".</p>
+    <p>
+        <button id="qs">Clicca per cambiare sfondo al primo elemento con class="esempio1"</button>
+    </p>
+    <p>
+        <button id="qsp">Clicca per cambiare sfondo al paragrafo con class="esempio1"</button>
+    </p>
+    <script>
+        document.getElementById("qs").addEventListener("click", cambiaSfondo);
+
+        function cambiaSfondo() {
+            document.querySelector(".esempio1").style.backgroundColor = "red";
+        }
+
+        document.getElementById("qsp").addEventListener("click", cambiaSfondoP);
+
+        function cambiaSfondoP() {
+            document.querySelector("p.esempio1").style.backgroundColor = "green";
+        }
+    </script>
+    <h2 class="esempio2">Modifica di tutti gli elementi di una classe (querySelectorAll())</h2>
+    <p class="esempio2">Questo paragrafo ha class="esempio2"</p>
+    <p>
+        <button id="qsa">Clicca per cambiare sfondo e font a tutti gli elementi con class="esempio2"</button>
+    </p>
+    <script>
+        document.getElementById("qsa").addEventListener("click", cambiaSfondi);
+
+        function cambiaSfondi() {
+            let x = document.querySelectorAll(".esempio2"); // x è l'array degli elementi DOM di classe "esempio2"
+
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.backgroundColor = "cyan";
+                x[i].style.fontFamily = "Arial";
+            }
+
+        }        
+    </script>
+</body>
+
+</html>

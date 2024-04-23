@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestore telefonico</title>
+    <style>
+        body {
+            background-color: #f0ff9a;
+            font-family: Verdana;
+            font-size: 14px;
+
+        }
+
+        #centro {
+            background-color: #1ff70e;
+            border: 1px dashed blue;
+            width: 600px;
+            height: auto;
+            margin: 30px auto;
+            padding: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="centro">
+        <form action="#" name="modulo" method="post">
+            Seleziona il tuo gestore telefonico <br />
+            <input type="radio" name="operatore" value="tim" id="tim" />TIM <br />
+            <input type="radio" name="operatore" value="vodafone" id="vodafone" /> VODAFONE <br />
+            <input type="radio" name="operatore" value="windtre" id="windtre" /> WIND-TRE <br />
+            <input type="radio" name="operatore" value="altro" id="altro" />altro <input type="text"
+                name="altroOperatore" disabled /> <br /> <br />
+            <input type="submit" value="Registrati" />
+            <!--uso submit perchè js deve controllare soltanto i radiobutton-->
+
+
+        </form>
+    </div>
+    <script>
+        /*
+        questo script ativa l'input text se si seleziona il radiobutton altro, inoltre salva l'input di testo immesso se si cambia gestore disatttivando l'inpunt text e lo riscrive riselezionando il radiobutton altro*/
+        let recupero = "" // variabile globale per salvare l'input utente
+        //programmo il singolo rafiobutton altro
+        document.getElementById("altro").addEventListener("click", abilita );
+        function abilita(){
+            document.modulo.altroOperatore.disabled = false; //attivo l'input text
+            document.modulo.altroOperatore.focus(); //cursore sull'input text
+            document.modulo.altroOperatore.value = recupero; //riscrivo l'ultimo gestore inserito se presente
+        }
+
+        //programmo gli altri tre radiobutton
+        const tim = document.getElementById("tim");
+        const vodafone = document.getElementById("vodafone");
+        const windtre = document.getElementById("windtre");
+        let gestori = [tim, vodafone, windtre]; // array che raccoglie i tre radiobutton tramite id
+        gestori.forEach(function(gestore){ //gestoire è ciascun degli elementi di gestore
+            gestore.addEventListener("click", disabilita);//funzione opposta ad abilita()
+            function disabilita(){
+                if(recupero == "") {
+                  recupero = document.modulo.altroOperatore.value; //salvo l'input utente in memoria   , se c'è scritto qualcosa e quindi in memoria
+                }
+               
+                document.modulo.altroOperatore.disabled = true; //disattivo l'input text
+                document.modulo.altroOperatore.value = ""; //svuoto l'input text
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

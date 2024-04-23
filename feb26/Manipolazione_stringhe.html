@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form con moderazione dei commenti</title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+
+        textarea {
+            resize: none;
+        }
+    </style>
+<script src="
+https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
+"></script>
+
+</head>
+<body>
+    <form name="modulo" action="#" method="post">
+        Nome: <input type="text" name="nome" /> Cognome: <input type="text" name="cognome" /><br />
+        Messaggio: <textarea name="messaggio" cols="50" rows="4"></textarea><br />
+        Email: <input type="text" name="email" /> <input type="button" value="Clicca" id="pulsante" />
+    </form>
+    <div id="contenuto"></div>
+    <script>
+        document.getElementById("pulsante").addEventListener("click", controllo);
+
+        function controllo() { // funzione che modera parole offensive, sostituendole opportunamente
+            const moderabili = ["stupido", "deficiente", "sciocco", "decerebrato"];
+            const moderate = ["bravo", "intelligente", "saggio", "brillante"];
+            let carNome = document.modulo.nome.value.length; // recupero la lunghezza del nome immesso
+            let carCognome = document.modulo.cognome.value.length; // recupero la lunghezza del cognome immesso
+            let testo = "Benvenuto/a nel nostro sito, " + document.modulo.nome.value + " " + document.modulo.cognome.value + ", il tuo nome è composto da " + carNome + " caratteri, e il tuo cognome da " + carCognome + " caratteri";
+            let messaggioIniziale = document.modulo.messaggio.value; // memorizzo il messaggio originale
+            let messaggio = document.modulo.messaggio.value; // copia del messaggio da manipolare
+
+            // la moderazione del messaggio avviene cercando, per ogni parola del messaggio, eventuali parole contenute nell'array moderabili[]
+            for (let i = 0; i < moderabili.length; i++) {
+                messaggio = messaggio.split(moderabili[i]).join(moderate[i]);
+                // split() spezza il messaggio togliendo la parola non gradita
+                // join() ricompone il messaggio concatenandolo con la parola sostitutiva
+            }
+
+            testo += "<br />Il messaggio da te inviato è: " + messaggio; // testo += ... equivale a testo = testo + ...
+
+            if (messaggio == messaggioIniziale) {
+                testo += "<br />" + "testo originale".toUpperCase();
+            } else {
+                testo += "<br />" + "testo moderato".toUpperCase();
+            }
+
+            document.getElementById("contenuto").innerHTML = testo;
+
+            if (document.modulo.email.value.indexOf("@") == -1 || 
+                document.modulo.email.value.indexOf("@") == 0) { // se nella email manca la @
+                alert("Attenzione, l'indirizzo email immesso non sembra corretto.");
+            }
+
+        }
+        
+    </script>
+</body>
+</html>

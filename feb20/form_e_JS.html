@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="moduloweb" name="modulo" method="post">
+        <!-- siccome il form è ovviettivo di JS, l'action non occorre-->
+        <!--name: memoria in cui sono memmorizzati i dati scelti dall'utente-->
+        <!--id: serve per css e per agganciare eventi-->
+
+
+        <h3> Seleziono il sito che vuoi visitare: <select name="sito" id="sceglisito">
+                <option selected disabled> Selezionare</option>
+                <option value="https://www.accademiadellevante.org/">Acccademia del Levante</option>
+                <option value="https://animali75.blogspot.com">Amici Animali</option>
+                <option value="https://studiotecnico75.altervista.com">Studio Tecnico 75</option>
+            </select></h3>
+        <p> Nome: <input type="text" name="nome" id="nome" size="20" /></p>
+        <!--Name e id possono essere uguali, nn si intralciano-->
+        <p> cognome: <input type="text" name="cognome" id="cognome" size="20" /></p>
+        <p> Genere: <input type="radio" name="genere" id="radiom" value="o" /> Uomo,
+            <input type="radio" name="genere" id="radif" value="a" /> Donna,
+            <input type="radio" name="genere" id="radio*" value="*" /> Altro
+        </p>
+        <p> <input type="button" name="pulsante" id="button" value="Salutami" disabled> </p>
+    </form>
+    <!--creo l?iframe che conterrà il sito scelto dal select-->
+    <iframe name="prova" width="800" height="600"></iframe>
+    <script>
+        document.getElementById("sceglisito").addEventListener("change", apri);
+        // l'evento
+
+
+
+        function apri() {
+            let url = document.modulo.sito.value; //recupero il value del select name del form modulo
+            window.open(url, "prova"); //invio l'url nell'iframe di name prova 
+        }
+
+
+
+        //acquisisco in js i tre radiobutton del genere sotto forma di costanti
+        const uomo = document.getElementById("radiom");
+        const donna = document.getElementById("radif");
+        const altro = document.getElementById("radio*");
+        let genere = [uomo, donna, altro] //unisco i radiobutton in un arrey
+        genere.forEach(function (persona) {
+            persona.addEventListener("click", abilita);
+            function abilita() {
+                document.modulo.pulsante.disabled = false;
+            }
+
+
+        });
+        //programmo il buttun
+        document.getElementById("button").addEventListener("click", saluta);
+        function saluta() {
+            let nome = document.modulo.nome.value;
+            let cognome = document.modulo.cognome.value;
+            let gen= document.modulo.genere.value;
+
+            if (nome.length > 2 & cognome.length > 2) {
+       alert("Benvenut" + gen + " nel mio sito " + nome + " " + cognome);
+
+            } else{
+              alert("il nome o il cognome inseriti sono troppo corti non posso salutarti")  
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

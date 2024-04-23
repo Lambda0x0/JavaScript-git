@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esempi di innerHTML</title>
+    <style>
+        #contenuto1{
+            height: auto;
+            min-height: 16px;
+            border: 1px solid blue;
+        }
+        #contenuto2{
+            height: auto;
+            min-height: 16px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="Clicca qui" id="button1"/>
+    <input type="button" value="Verifica contenuto" id="button2"/>
+    <div id="contenuto1" ></div>
+    <input type="button" value="Clicca qui" id="button3"/>
+    <input type="button" value="Verifica contenuto" id="button4"/>
+    <div id="contenuto2"> Qui comparirarro i numeri progressivi e degli smile</div>
+    <script>
+        document.getElementById("button1").addEventListener("click",riempi1);
+        function riempi1(){
+document.getElementById("contenuto1").innerHTML = "<span style= 'color:  red; font-weight: bold; '> Hai cliccato sul pulsante button1</span>";
+
+        } 
+        
+        //programmo button 2
+        document.getElementById("button2").addEventListener("click",verifica1);
+        function verifica1(){
+            let codice = document.getElementById("contenuto1").innerHTML;
+            alert(codice);
+
+        }
+
+
+        let conta   = 1;
+
+
+//programmo button3
+        document.getElementById("button3").addEventListener("click",riemp2);
+        function riemp2(){
+            document.getElementById("contenuto2").innerHTML = document.getElementById("contenuto2").innerHTML + "ciao n° " + conta + "<img src='Smiley.png' />";
+            conta++;
+        }
+        //programmo button4
+        document.getElementById("button4").addEventListener("click",verifica2);
+        function verifica2(){
+            let codice = document.getElementById("contenuto2").innerHTML;
+            alert(codice);
+        }
+
+        </script>
+</body>
+</html>
